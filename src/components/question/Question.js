@@ -1,14 +1,21 @@
-import React, { useState } from "react";
-//import './Question.css';
+import React from "react";
+import '/Users/mardesai1/quizapp/src/components/question/Question.css';
+import { Button } from 'antd';
 
-const Question = () => {
+const Question = (props) => {
     return (
         <div className="questionbox">
             <h1 className="quetitle">Question</h1>
-           <div className="queline">
-                 <span>4 of 5</span>
+           
+                <span>4 of 5</span>
                 <p>Which is the </p>
-            </div>
+            
+            <Button
+                type="primary"
+                onClick={() => props.quizResult()}
+                >
+                Quit
+            </Button>   
         </div>
     )
 }

@@ -2,16 +2,15 @@ import React from "react";
 import { Button } from 'antd';
 
 const Quiz = (props) => {
-  
     return (
         <div className="quizcontainer">
         <h1>Quiz App</h1>
         <Button
           type="primary"
           
-          onClick={() => props.quizstart()}
+          onClick={() => props.quizStart()}
         >
-          Click me!
+         Play
         </Button>    
       </div>
     )
