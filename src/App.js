@@ -1,16 +1,21 @@
 
 import './App.css';
-import Question from './components/Question';
+import Question from './components/question/Question';
+import Quiz from './components/quiz/Quiz';
+import React, { useState } from "react";
 
 function App() {
+  const [isQuizStarted, setIsQuizStarted] = useState(false);
+
+  const quizstart = () => {
+    setIsQuizStarted(true);
+  }
+
   return (
     <>
     <div className='App'>
-      <div className="quizcontainer">
-        <h1>Quiz App</h1>
-        <button>play</button>      
-      </div>
-      <Question/>
+      
+      {isQuizStarted ? <Question/> : <Quiz quizstart={quizstart}/>}
     </div>
     </>
   );
