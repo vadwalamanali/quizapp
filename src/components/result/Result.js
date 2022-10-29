@@ -2,9 +2,11 @@ import React from "react";
 import { Button } from 'antd';
 
 const Result = (props) => {
+  debugger
     return (
         <div className="quizcontainer">
         <h1>Result</h1>
+        Your Score {props.score}
         <Button
           type="primary"
           onClick={() => props.quizStart()}

@@ -9,6 +9,7 @@ import "antd/dist/antd.min.css";
 function App() {
   const [isQuizStarted, setIsQuizStarted] = useState(false);
   const [showResult,setShowResult] = useState(false);
+  const [score,setScore] = useState(0);
 
   const quizStart = () => {
     setShowResult(false);
@@ -21,10 +22,18 @@ function App() {
     setShowResult(false);
     setIsQuizStarted(false);
   }
+
+  
+  const saveScore = (answer,value) => {
+    let correctans = answer
+    if(value === correctans) {
+        setScore(score+1);
+    }
+}
   if(showResult) {
-    return <Result quizStart={quizStart} quizStop={quizStop}/>
+    return <Result quizStart={quizStart} quizStop={quizStop} score={score} />
   } else if (isQuizStarted) {
-    return <Question quizResult={quizResult}/>
+    return <Question quizResult={quizResult} saveScore={saveScore}/>
   } else {
     return <Quiz quizStart={quizStart}/>
   }
