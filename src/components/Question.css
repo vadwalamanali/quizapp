@@ -1,0 +1,13 @@
+.questionbox {
+    width:900px;
+    height: 500px;
+    background-color: white;
+    margin: 0 auto;
+    padding: 15px;
+}
+.quetitle {
+    text-align:center;
+}
+.queline {
+    display: flex;
+}
