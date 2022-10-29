@@ -1,6 +1,6 @@
 import React,{ useEffect, useState } from "react";
 import '/Users/mardesai1/quizapp/src/components/question/Question.css';
-import { Button,Radio } from 'antd';
+import { Button,Radio,Row,Col,Space } from 'antd';
 import axios from "axios";
 
 const Question = (props) => {
@@ -46,51 +46,71 @@ const Question = (props) => {
             <div className="questionbox">
                 <h1 className="quetitle">Question</h1>
                     <span>{currentIndex + 1}/{data.data.results.length}</span>
-                    {data?.data?.results?.[currentIndex].question}
-                    <Radio.Group onChange={onChange} value={value} >
-                    {data?.data?.results?.[currentIndex].incorrect_answers.map((inc, index) => {
-                    return (
-                        <Radio key = {index} value={inc}>{inc}</Radio> 
-                    );
-                    })}
+                        <Row  gutter={[24, 16]} justify="center">
+                            <Col  span={24}>
+                                <Space direction="horizontal" style={{width: '100%', justifyContent: 'center'}}>
+                                    {data?.data?.results?.[currentIndex].question}
+                                </Space>
+                            </Col>
+                            <Col span={24}>
+                                <Space direction="horizontal" style={{width: '100%', justifyContent: 'center'}}>
+                                    <Radio.Group onChange={onChange} value={value} >
+                                    {data?.data?.results?.[currentIndex].incorrect_answers.map((inc, index) => {
+                                    return (
+                                        <Radio.Button key = {index} value={inc}>{inc}</Radio.Button> 
+                                    );
+                                    })}
 
-                    <Radio value={data?.data?.results?.[currentIndex].correct_answer}>{data?.data?.results?.[currentIndex].correct_answer}</Radio> 
-                        
-                    </Radio.Group>
-                <div>
-                {currentIndex !== data.data.results.length-1 && ( 
-                    <Button
-                        type="primary"
-                        onClick={() => props.quizResult()}
-                        >
-                        Quit
-                    </Button>   
-                )}
-                {currentIndex !== data.data.results.length-1 ? 
-                    (
-                        <Button
-                            type="primary"
-                            onClick={() => next()}
-                            >
-                            Next
-                        </Button>   
-                    ) : (
-                        <Button
-                            type="primary"
-                            onClick={() => props.quizResult()}
-                            >
-                            SUBMIT
-                        </Button>   
-                    )
-                }
-                <Button
-                    disabled={currentIndex === 0 ? true : false}
-                    type="primary"
-                    onClick={() => prev()}
-                    >
-                    prev
-                </Button>  
-                </div> 
+                                    <Radio.Button value={data?.data?.results?.[currentIndex].correct_answer}>{data?.data?.results?.[currentIndex].correct_answer}</Radio.Button> 
+                                        
+                                    </Radio.Group>
+                                </Space>
+                            </Col>
+                        <Col span={6}> 
+                        <Space>
+
+                            {currentIndex !== data.data.results.length-1 && ( 
+                            
+                                <Button
+                                    type="primary"
+                                    onClick={() => props.quizResult()}
+                                    >
+                                    Quit
+                                </Button>  
+                            
+                            )}
+                            {currentIndex !== data.data.results.length-1 ? 
+                                (
+                                    
+                                    <Button
+                                        type="primary"
+                                        onClick={() => next()}
+                                        >
+                                        Next
+                                    </Button>  
+                                    
+                                ) : (
+                                
+                                    <Button
+                                        type="primary"
+                                        onClick={() => props.quizResult()}
+                                        >
+                                        SUBMIT
+                                    </Button>   
+                                    
+                                )
+                            }
+                            <Button
+                                disabled={currentIndex === 0 ? true : false}
+                                type="primary"
+                                onClick={() => prev()}
+                                >
+                                prev
+                            </Button> 
+                            </Space> 
+                        </Col>
+                </Row>
+               
             </div>
         )
 
