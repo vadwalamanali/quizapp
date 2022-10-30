@@ -23,8 +23,8 @@ app.all('/*',function(req, res, next) {
 
 
 app.get("/", (req, res) => {
-  //res.sendFile(path.join(__dirname, '/frontend/build', 'index.html'))
-  res.send({ message: "Welcome." });
+  res.sendFile(path.join(__dirname, '/frontend/build', 'index.html'))
+  //res.send({ message: "Welcome." });
 });
 
 
