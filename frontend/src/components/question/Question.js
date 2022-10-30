@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from "react";
-import '/Users/mardesai1/quizapp/src/components/question/Question.css';
+import './Question.css';
 import { Button,Radio,Row,Col,Space } from 'antd';
 import axios from "axios";
 
