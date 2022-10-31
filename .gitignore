@@ -20,8 +20,6 @@ terraform.tfvars
 
 # Build generated
 dist/
-public/
-build/
 .next
 
 # Compressed archives
