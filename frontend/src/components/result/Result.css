@@ -1,0 +1,10 @@
+.result {
+    color: green;
+}
+.rightresult {
+    color: green !important;
+    font-size:24px;
+}
+.score {
+    margin-bottom: 15px;;
+}

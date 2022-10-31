@@ -1,16 +1,19 @@
 import React from "react";
 import { Button,Row,Col,Space } from 'antd';
-import {CheckCircleOutlined} from '@ant-design/icons'
+import {CheckCircleOutlined} from '@ant-design/icons';
+import './Result.css';
 
 const Result = (props) => {
   
     return (
         <div className="quizcontainer">
           <Space>
-            <CheckCircleOutlined/>
+            <CheckCircleOutlined className="rightresult"/>
           </Space>
-        <h1>Result</h1>
-        Your Score {props.score} %
+          <h1 className="result">Result</h1>
+          <div className="score">Your Score {Math.floor(props.score/props.totalque*100)}%</div>
+          <div className="score">Total Number Of Question: {props.totalque}</div>
+          <div className="score">Total Number Of Correct Answer : {props.score}</div>
         <Row>
           <Col span={6}>
           <Space>

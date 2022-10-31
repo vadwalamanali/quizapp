@@ -1,6 +1,6 @@
 .questionbox {
     width:900px;
-    height: 500px;
+    height: 230px;
     background-color: white;
     margin: 20px auto 0 auto;
     padding: 15px;
@@ -11,4 +11,11 @@
 .queline {
     display: flex;
     align-items: center;
+}
+.loadingdata {
+    display: flex !important;
+    justify-content: center;    
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
 }

@@ -10,6 +10,7 @@ function App() {
   const [isQuizStarted, setIsQuizStarted] = useState(false);
   const [showResult,setShowResult] = useState(false);
   const [score,setScore] = useState(0);
+  const [totalque,setTotalQue] = useState(0);
 
   const quizStart = () => {
     setShowResult(false);
@@ -23,17 +24,17 @@ function App() {
     setIsQuizStarted(false);
   }
 
-  
   const saveScore = (answer,value) => {
     let correctans = answer
     if(value === correctans) {
         setScore(score+1);
     }
+    
 }
   if(showResult) {
-    return <Result quizStart={quizStart} quizStop={quizStop} score={score} />
+    return <Result quizStart={quizStart} quizStop={quizStop} score={score} totalque={totalque} />
   } else if (isQuizStarted) {
-    return <Question quizResult={quizResult} saveScore={saveScore}/>
+    return <Question quizResult={quizResult} saveScore={saveScore}  totalque={setTotalQue}/>
   } else {
     return <Quiz quizStart={quizStart}/>
   }

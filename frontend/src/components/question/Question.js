@@ -1,10 +1,10 @@
 import React,{ useEffect, useState } from "react";
 import './Question.css';
-import { Button,Radio,Row,Col,Space } from 'antd';
+import { Button,Radio,Row,Col,Space,Spin } from 'antd';
 import axios from "axios";
 
 const Question = (props) => {
-
+    console.log(props)
     const [data, setData] = React.useState();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [value, setValue] = useState();
@@ -16,8 +16,8 @@ const Question = (props) => {
         axios
           .get("https://opentdb.com/api.php?amount=20")
           .then((res) => {
-            //console.log(res);
             setData(res);
+            props.totalque(res.data.results.length);
           })
           .catch((err) => {
             console.log(err);
@@ -26,7 +26,7 @@ const Question = (props) => {
 
       
     if (data === undefined) {
-        return <div>Loading...</div>
+        return <div><Spin className="loadingdata"/></div>
     }
 
     const next = () => {
@@ -38,9 +38,9 @@ const Question = (props) => {
     const prev = () => {
         if(currentIndex !== 0) {
             setCurrentIndex(currentIndex - 1)
-        }
-        
+        } 
     }
+
         return (
 
             <div className="questionbox">
