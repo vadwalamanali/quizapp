@@ -3,11 +3,11 @@ import './Question.css';
 import { Button,Radio,Row,Col,Space,Spin } from 'antd';
 import axios from "axios";
 
-const Question = (props) => {
-    console.log(props)
+const Question = (props) => {   
     const [data, setData] = React.useState();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [value, setValue] = useState();
+    const [prevQue,setPrevQue] = useState([]);
 
     const onChange = (e) => {
         setValue(e.target.value);
@@ -24,25 +24,51 @@ const Question = (props) => {
           });
       }, []);
 
+      let prev = () => {      
+          if(currentIndex !== 0) {            
+              setCurrentIndex(currentIndex - 1)      
+              let findIndex = prevQue.find((elm) => {
+                  return (
+                      elm.id === currentIndex
+                  )                
+              })
+              setValue(findIndex.userSelectedAns)  
+              
+          } 
+      }
+  
       
     if (data === undefined) {
         return <div><Spin className="loadingdata"/></div>
     }
-
     const next = () => {
         if(currentIndex !== data.data.results.length-1 ){
             setCurrentIndex(currentIndex + 1);
             props.saveScore(data?.data?.results?.[currentIndex].correct_answer,value);
-        }
-    }
-    const prev = () => {
-        if(currentIndex !== 0) {
-            setCurrentIndex(currentIndex - 1)
-        } 
+
+            let findIndex = prevQue.find((elm) => {
+                return (
+                    elm.id === currentIndex+1
+                )                
+            })
+            
+            if(findIndex) {
+                var ua = prevQue.map(u => u.id === findIndex.id ? findIndex : u);
+                setValue(ua[currentIndex+1]?.userSelectedAns)  
+                setPrevQue(ua)
+            } else{
+                const temporarypreviousquestionvalue = {
+                    id: currentIndex+1,
+                    question: data?.data?.results?.[currentIndex].question,
+                    userSelectedAns: value
+                   }
+                  setPrevQue(prevQue => [...prevQue, temporarypreviousquestionvalue])
+                  
+                }
+            }
     }
 
         return (
-
             <div className="questionbox">
                 <h1 className="quetitle">Question</h1>
                     <span>{currentIndex + 1}/{data.data.results.length}</span>
