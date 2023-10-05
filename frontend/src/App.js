@@ -1,4 +1,4 @@
-
+https://opentdb.com/api.php?amount=1
 import './App.css';
 import Question from './components/question/Question';
 import Quiz from './components/quiz/Quiz';
